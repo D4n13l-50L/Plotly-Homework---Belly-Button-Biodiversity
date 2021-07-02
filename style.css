@@ -1,0 +1,51 @@
+body {
+    background-color: lavender;
+    color:black;
+}
+
+.jumbotron {
+    background-image: url("bacteria.jpg");
+    opacity: 0.85;
+    background-size: 100% 100%;
+    text-align: left;
+}
+
+.titletext {
+    opacity: 1;
+    color:darkgreen;
+    text-shadow: 2px 2px black;
+}
+
+.chart {
+    background-color: lavender;
+}
+
+select {
+    border: 4px solid white;
+    border-radius: 3px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #9b9be2;
+    box-shadow: 0 0 10px #9b9be2;
+}
+
+.well {
+    border: 2px solid blue;
+    border-radius: 5px;
+    background-color:lavender;
+}
+
+.panel {
+    border: 2px solid blue;
+    border-radius: 5px;
+}
+
+.panel-heading {
+    background-color:red;
+}
+
+#gauge {
+    align-content: center;
+}
