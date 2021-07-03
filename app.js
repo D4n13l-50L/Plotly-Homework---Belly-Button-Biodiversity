@@ -1,40 +1,40 @@
-//  create funtion for  metadata of data
+//  build  funtion for  metadata
 function buildMetadata(selection) {
 
-    // Read the json data
+    // Read  json 
     d3.json("samples.json").then((sampleData) => {
-
         console.log(sampleData);
-
-        // Parse and filter the data to get the sample's metadata
+        // Parse data and get the sample METADATA
         var parsedData = sampleData.metadata;
         console.log("parsed data inside buildMetadata function")
         console.log(parsedData);
-
         var sample = parsedData.filter(item => item.id == selection);
         console.log("showing sample[0]:");
         console.log(sample[0]);
-
-        // Specify the location of the metadata and update it
+        // Define location of metadata and update it
         var metadata = d3.select("#sample-metadata").html("");
-
+        //create objet 
         Object.entries(sample[0]).forEach(([key, value]) => {
             metadata.append("p").text(`${key}: ${value}`);
         });
+    
+
 
         console.log("next again");
         console.log(metadata);
+
+
+
     });
 }
 
-// Define a function that will create charts for given sample
+//funtion for creating charts for given sample
 function buildCharts(selection) {
 
     // Read the json data
     d3.json("samples.json").then((sampleData) => {
 
-        // Parse and filter the data to get the sample's OTU data
-        // Pay attention to what data is required for each chart
+
         var parsedData = sampleData.samples;
         console.log("parsed data inside buildCharts function")
         console.log(parsedData);
@@ -43,17 +43,16 @@ function buildCharts(selection) {
         console.log("sampleDict")
         console.log(sampleDict);
 
-
+        //  Use sample_values 
         var sampleValues = sampleDict.sample_values; 
         var barChartValues = sampleValues.slice(0, 10).reverse();
         console.log("sample_values")
         console.log(barChartValues);
-
+        //Use otu_ids 
         var idValues = sampleDict.otu_ids;
         var barChartLabels = idValues.slice(0, 10).reverse();
         console.log("otu_ids");
         console.log(barChartLabels);
-
         var reformattedLabels = [];
         barChartLabels.forEach((label) => {
             reformattedLabels.push("OTU " + label);
@@ -67,7 +66,7 @@ function buildCharts(selection) {
         console.log("otu_labels");
         console.log(barCharthovertext);
 
-        // Create bar chart in correct location
+        // Graphs: bar chart location
         
         var barChartTrace = {
             type: "bar",
@@ -75,7 +74,8 @@ function buildCharts(selection) {
             x: barChartValues,
             text: barCharthovertext,
             orientation: 'h'
-
+         //chart size
+           
         };
         var layout2 = {
             showlegend: false,
@@ -90,7 +90,7 @@ function buildCharts(selection) {
 
         Plotly.newPlot("bar", barChartData, layout2);
 
-        // Create bubble chart in correct location
+        // Graphs: bubble chart location
 
         var bubbleChartTrace = {
             x: idValues,
@@ -104,7 +104,7 @@ function buildCharts(selection) {
         };
 
         var bubbleChartData = [bubbleChartTrace];
-
+        //chart size
         var layout = {
             showlegend: false,
             height: 500,
@@ -122,27 +122,24 @@ function buildCharts(selection) {
     });
 }
 
-// Define function that will run on page load
+// Function for  page load
 function init() {
 
     // Read json data
     d3.json("samples.json").then((sampleData) => {
 
-        // Parse and filter data to get sample names
+
+        // Fpr Sample names: Parse data
         var parsedData = sampleData.names;
         console.log("parsed data inside init function")
         console.log(parsedData);
-
-        // Add dropdown option for each sample
+        // For dropdown
         var dropdownMenu = d3.select("#selDataset");
-
         parsedData.forEach((name) => {
             dropdownMenu.append("option").property("value", name).text(name);
         })
-
-        // Use first sample to build metadata and initial plots
+        // For initial page show values of first sample
         buildMetadata(parsedData[0]);
-
         buildCharts(parsedData[0]);
 
     });
@@ -150,9 +147,9 @@ function init() {
 
 function optionChanged(newSelection) {
 
-    // Update metadata with newly selected sample
+    // Onscreen selected metadata 
     buildMetadata(newSelection); 
-    // Update charts with newly selected sample
+    // Onscreen selected metadata 
     buildCharts(newSelection);
 }
 
