@@ -10,9 +10,12 @@ This homework make me work with Plotly, D3.json(), as well as how to parse data 
 
 main take aways.
 
-How you would fetch data from the API (d3.json() to send an HTTP request and load .json file)
-Use JavaScript methods and Math object to massage the data into the appropriate JSON format
-Use Plotly.js newPlot method to create the bar chart, passing in the JSON for the data
+-How you would fetch data from the API (d3.json() to send an HTTP request and load .json file)
+
+-Use JavaScript methods and Math object to massage the data into the appropriate JSON format
+
+-Use Plotly.js newPlot method to create the bar chart, passing in the JSON for the data
+
 
 
 
